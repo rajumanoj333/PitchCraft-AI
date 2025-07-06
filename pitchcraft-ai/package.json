@@ -1,7 +1,7 @@
 {
   "name": "pitchcraft-ai",
   "version": "1.0.0",
-  "description": "Simple AI pitch deck generator backend",
+  "description": "AI-powered pitch deck generator backend",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -13,7 +13,10 @@
   "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "dotenv": "^17.0.1",
+    "node-fetch": "^2.7.0",
+    "axios": "^1.6.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.0"

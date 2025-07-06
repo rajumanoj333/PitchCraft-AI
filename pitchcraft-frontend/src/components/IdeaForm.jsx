@@ -19,10 +19,16 @@ const IdeaForm = () => {
         idea: idea.trim()
       });
       
-      setPitch(response.data.pitch);
+      if (response.data.success) {
+        setPitch(response.data.pitch);
+        console.log('Generated pitch:', response.data);
+      } else {
+        setError('Failed to generate pitch deck. Please try again.');
+      }
     } catch (error) {
       console.error('Error:', error);
-      setError('Failed to generate pitch deck. Please try again.');
+      const errorMessage = error.response?.data?.message || 'Failed to generate pitch deck. Please try again.';
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -36,14 +42,29 @@ const IdeaForm = () => {
 
   if (pitch) {
     return (
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '2rem', fontFamily: 'system-ui, sans-serif' }}>
+      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '2rem', fontFamily: 'system-ui, sans-serif' }}>
         <div style={{ background: 'white', borderRadius: '12px', boxShadow: '0 10px 25px rgba(0,0,0,0.1)', padding: '2rem' }}>
           
           {/* Header */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', borderBottom: '2px solid #f0f0f0', paddingBottom: '1rem' }}>
-            <h1 style={{ fontSize: '2.5rem', color: '#1f2937', margin: 0 }}>
-              🎯 Your Pitch Deck
-            </h1>
+            <div>
+              <h1 style={{ fontSize: '2.5rem', color: '#1f2937', margin: 0 }}>
+                🎯 AI-Powered Pitch Deck
+              </h1>
+              {pitch.analysis?.validation?.score && (
+                <div style={{ display: 'flex', alignItems: 'center', marginTop: '0.5rem' }}>
+                  <span style={{ fontSize: '14px', color: '#6b7280' }}>Quality Score: </span>
+                  <span style={{ 
+                    fontSize: '16px', 
+                    fontWeight: 'bold', 
+                    color: pitch.analysis.validation.score >= 8 ? '#059669' : pitch.analysis.validation.score >= 6 ? '#d97706' : '#dc2626',
+                    marginLeft: '0.5rem'
+                  }}>
+                    {pitch.analysis.validation.score}/10
+                  </span>
+                </div>
+              )}
+            </div>
             <button 
               onClick={handleReset}
               style={{
@@ -60,56 +81,153 @@ const IdeaForm = () => {
             </button>
           </div>
 
-          {/* Original Idea */}
-          <div style={{ marginBottom: '2rem', padding: '1.5rem', backgroundColor: '#f8fafc', borderRadius: '8px', border: '2px solid #e2e8f0' }}>
-            <h3 style={{ color: '#3b82f6', marginTop: 0, fontSize: '1.2rem' }}>💡 Original Idea</h3>
-            <p style={{ fontSize: '16px', lineHeight: '1.6', margin: 0 }}>{pitch.idea}</p>
+          {/* Original Idea & Executive Summary */}
+          <div style={{ marginBottom: '2rem' }}>
+            <div style={{ padding: '1.5rem', backgroundColor: '#f8fafc', borderRadius: '8px', border: '2px solid #e2e8f0', marginBottom: '1rem' }}>
+              <h3 style={{ color: '#3b82f6', marginTop: 0, fontSize: '1.2rem' }}>💡 Original Idea</h3>
+              <p style={{ fontSize: '16px', lineHeight: '1.6', margin: 0 }}>{pitch.idea}</p>
+            </div>
+            
+            {pitch.executiveSummary && (
+              <div style={{ padding: '1.5rem', backgroundColor: '#fef3f4', borderRadius: '8px', border: '2px solid #fecaca' }}>
+                <h3 style={{ color: '#dc2626', marginTop: 0, fontSize: '1.2rem' }}>📋 Executive Summary</h3>
+                <p style={{ fontSize: '16px', lineHeight: '1.6', margin: 0, fontStyle: 'italic' }}>{pitch.executiveSummary}</p>
+              </div>
+            )}
           </div>
 
           {/* Pitch Slides */}
-          <div style={{ display: 'grid', gap: '1.5rem' }}>
-            {pitch.slides.map((slide, index) => (
-              <div 
-                key={index}
-                style={{
-                  padding: '1.5rem',
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #e2e8f0',
-                  borderRadius: '8px',
-                  borderLeft: '4px solid #3b82f6'
-                }}
-              >
-                <h3 style={{ 
-                  color: '#1f2937', 
-                  marginTop: 0, 
-                  marginBottom: '1rem',
-                  fontSize: '1.3rem',
-                  fontWeight: '600'
-                }}>
-                  {index + 1}. {slide.title}
-                </h3>
-                <p style={{ 
-                  lineHeight: '1.7', 
-                  margin: 0, 
-                  color: '#4b5563',
-                  fontSize: '15px'
-                }}>
-                  {slide.content}
-                </p>
-              </div>
-            ))}
+          <div style={{ marginBottom: '2rem' }}>
+            <h2 style={{ fontSize: '1.8rem', color: '#1f2937', marginBottom: '1.5rem' }}>📊 Pitch Deck Slides</h2>
+            <div style={{ display: 'grid', gap: '1.5rem' }}>
+              {pitch.slides.map((slide, index) => (
+                <div 
+                  key={index}
+                  style={{
+                    padding: '1.5rem',
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #e2e8f0',
+                    borderRadius: '8px',
+                    borderLeft: '4px solid #3b82f6'
+                  }}
+                >
+                  <h3 style={{ 
+                    color: '#1f2937', 
+                    marginTop: 0, 
+                    marginBottom: '1rem',
+                    fontSize: '1.3rem',
+                    fontWeight: '600'
+                  }}>
+                    {index + 1}. {slide.title}
+                  </h3>
+                  <p style={{ 
+                    lineHeight: '1.7', 
+                    margin: 0, 
+                    color: '#4b5563',
+                    fontSize: '15px'
+                  }}>
+                    {slide.content}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
+
+          {/* Market Research */}
+          {pitch.research && (
+            <div style={{ marginBottom: '2rem' }}>
+              <h2 style={{ fontSize: '1.8rem', color: '#1f2937', marginBottom: '1.5rem' }}>🔍 Market Research</h2>
+              <div style={{ display: 'grid', gap: '1rem' }}>
+                
+                {/* Market Size */}
+                <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '8px', border: '1px solid #bae6fd' }}>
+                  <h4 style={{ color: '#0369a1', margin: '0 0 0.5rem 0' }}>📈 Market Size</h4>
+                  <p style={{ margin: 0, fontSize: '14px', color: '#075985' }}>{pitch.research.marketSize}</p>
+                </div>
+
+                {/* Competitors */}
+                {pitch.research.competitors && pitch.research.competitors.length > 0 && (
+                  <div style={{ padding: '1rem', backgroundColor: '#fef3c7', borderRadius: '8px', border: '1px solid #fcd34d' }}>
+                    <h4 style={{ color: '#92400e', margin: '0 0 0.5rem 0' }}>🏢 Competitive Landscape</h4>
+                    <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '14px', color: '#a16207' }}>
+                      {pitch.research.competitors.slice(0, 3).map((competitor, index) => (
+                        <li key={index} style={{ marginBottom: '0.25rem' }}>{competitor}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Trends */}
+                {pitch.research.trends && pitch.research.trends.length > 0 && (
+                  <div style={{ padding: '1rem', backgroundColor: '#f0fdf4', borderRadius: '8px', border: '1px solid #bbf7d0' }}>
+                    <h4 style={{ color: '#166534', margin: '0 0 0.5rem 0' }}>📊 Market Trends</h4>
+                    <ul style={{ margin: 0, paddingLeft: '1rem', fontSize: '14px', color: '#15803d' }}>
+                      {pitch.research.trends.slice(0, 3).map((trend, index) => (
+                        <li key={index} style={{ marginBottom: '0.25rem' }}>{trend}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+              </div>
+            </div>
+          )}
+
+          {/* Analysis & Insights */}
+          {pitch.analysis && (
+            <div style={{ marginBottom: '2rem' }}>
+              <h2 style={{ fontSize: '1.8rem', color: '#1f2937', marginBottom: '1.5rem' }}>📊 AI Analysis</h2>
+              
+              <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+                
+                {/* Language Analysis */}
+                {pitch.analysis.language && (
+                  <div style={{ padding: '1rem', backgroundColor: '#faf5ff', borderRadius: '8px', border: '1px solid #e9d5ff' }}>
+                    <h4 style={{ color: '#7c3aed', margin: '0 0 0.5rem 0' }}>📝 Content Quality</h4>
+                    <div style={{ fontSize: '12px', color: '#6b46c1' }}>
+                      <div>Readability: {pitch.analysis.language.readability?.score}/10</div>
+                      <div>Engagement: {pitch.analysis.language.engagement?.score}/10</div>
+                      <div>Word Count: {pitch.analysis.language.wordCount}</div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Processing Time */}
+                {pitch.analysis.processingTime && (
+                  <div style={{ padding: '1rem', backgroundColor: '#f1f5f9', borderRadius: '8px', border: '1px solid #cbd5e1' }}>
+                    <h4 style={{ color: '#475569', margin: '0 0 0.5rem 0' }}>⚡ Generation Speed</h4>
+                    <div style={{ fontSize: '12px', color: '#64748b' }}>
+                      Processed in {(pitch.analysis.processingTime / 1000).toFixed(1)}s
+                    </div>
+                  </div>
+                )}
+
+                {/* AI Enhancement */}
+                <div style={{ padding: '1rem', backgroundColor: '#f0f9ff', borderRadius: '8px', border: '1px solid #bae6fd' }}>
+                  <h4 style={{ color: '#0369a1', margin: '0 0 0.5rem 0' }}>🤖 AI Enhanced</h4>
+                  <div style={{ fontSize: '12px', color: '#075985' }}>
+                    <div>✅ Research-backed</div>
+                    <div>✅ Content optimized</div>
+                    <div>✅ Language enhanced</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          )}
 
           {/* Footer */}
           <div style={{ 
-            marginTop: '2rem', 
             textAlign: 'center', 
             fontSize: '14px', 
             color: '#6b7280',
             borderTop: '1px solid #e2e8f0',
             paddingTop: '1rem'
           }}>
-            Generated on: {new Date(pitch.generatedAt).toLocaleString()}
+            <div>Generated on: {new Date(pitch.metadata?.generatedAt || Date.now()).toLocaleString()}</div>
+            <div style={{ marginTop: '0.5rem' }}>
+              Powered by AI • Market Research • Content Optimization
+            </div>
           </div>
         </div>
       </div>
@@ -153,8 +271,15 @@ const IdeaForm = () => {
             margin: 0,
             lineHeight: '1.6'
           }}>
-            Transform your startup idea into a professional pitch deck instantly
+            AI-powered pitch deck generator with real-time market research
           </p>
+          <div style={{ 
+            marginTop: '1rem',
+            fontSize: '14px',
+            color: '#9ca3af'
+          }}>
+            ✨ Research-backed • 🎯 AI-optimized • 📊 Professional quality
+          </div>
         </div>
         
         {/* Form */}
@@ -172,13 +297,13 @@ const IdeaForm = () => {
             <textarea
               value={idea}
               onChange={(e) => setIdea(e.target.value)}
-              placeholder="Enter your startup idea here... What problem does it solve? Who is your target market? What makes it unique?"
+              placeholder="Enter your startup idea here... What problem does it solve? Who is your target market? What makes it unique? The more details you provide, the better the AI-generated pitch deck will be."
               style={{
                 width: '100%',
                 padding: '1rem',
                 border: '2px solid #e1e5e9',
                 borderRadius: '8px',
-                minHeight: '120px',
+                minHeight: '140px',
                 fontSize: '16px',
                 fontFamily: 'inherit',
                 resize: 'vertical',
@@ -189,6 +314,9 @@ const IdeaForm = () => {
               onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
               onBlur={(e) => e.target.style.borderColor = '#e1e5e9'}
             />
+            <div style={{ fontSize: '12px', color: '#6b7280', marginTop: '0.5rem' }}>
+              Pro tip: Include target market, problem solved, and unique value proposition for best results
+            </div>
           </div>
           
           <button 
@@ -219,7 +347,7 @@ const IdeaForm = () => {
               }
             }}
           >
-            {loading ? '⏳ Generating Your Pitch Deck...' : '✨ Generate Pitch Deck'}
+            {loading ? '🔄 Generating AI-Powered Pitch Deck...' : '✨ Generate AI Pitch Deck'}
           </button>
         </form>
         
@@ -234,6 +362,26 @@ const IdeaForm = () => {
             color: '#dc2626'
           }}>
             <strong>⚠️ Error:</strong> {error}
+          </div>
+        )}
+
+        {/* Loading State */}
+        {loading && (
+          <div style={{
+            marginTop: '1.5rem',
+            padding: '1rem',
+            backgroundColor: '#f0f9ff',
+            border: '1px solid #bae6fd',
+            borderRadius: '8px',
+            color: '#0369a1',
+            textAlign: 'center'
+          }}>
+            <div style={{ marginBottom: '0.5rem' }}>🤖 AI is working on your pitch deck...</div>
+            <div style={{ fontSize: '14px', opacity: 0.8 }}>
+              • Conducting market research<br/>
+              • Generating professional content<br/>
+              • Optimizing language and structure
+            </div>
           </div>
         )}
       </div>
