@@ -1,4 +1,0 @@
-# /client/.env
-VITE_API_URL=http://localhost:3000
-VITE_SUPABASE_URL=https://dwinboujxqsqucizuxrf.supabase.co
-VITE_SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR3aW5ib3VqeHFzcXVjaXp1eHJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE3MDY4NDQsImV4cCI6MjA2NzI4Mjg0NH0.jYvO36nr00V3sUjhtHtnJf3bHUp_zmTBhK_x0WM7nG8
