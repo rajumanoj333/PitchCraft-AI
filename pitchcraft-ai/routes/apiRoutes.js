@@ -3,14 +3,15 @@ const express = require('express');
 const router = express.Router();
 const { researchAndGenerate } = require('../controllers/researchController');
 const { generatePitch, getPitch } = require('../controllers/pitchController');
-const authenticate = require('../middleware/authMiddleware');
 
-// Protect all API routes
-router.use(authenticate);
-
-// Pitch generation routes
+// Public API routes - no authentication required
 router.post('/generate-pitch', researchAndGenerate);
 router.post('/pitch', generatePitch);
 router.get('/pitch/:projectId', getPitch);
+
+// Health check
+router.get('/health', (req, res) => {
+  res.json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
 
 module.exports = router;

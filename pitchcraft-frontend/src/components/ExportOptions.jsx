@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { exportPDF, sendEmail, generateVideo } from '../services/apiService';
 
-const ExportOptions = ({ projectId, token }) => {
+const ExportOptions = ({ projectId }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState('');
   
@@ -12,19 +12,19 @@ const ExportOptions = ({ projectId, token }) => {
     try {
       switch(type) {
         case 'pdf': {
-          const pdfBlob = await exportPDF(projectId, token);
+          const pdfBlob = await exportPDF(projectId);
           downloadFile(pdfBlob, 'pitch-deck.pdf');
           break;
         }
           
         case 'email': {
-          await sendEmail(projectId, email, token);
+          await sendEmail(projectId, email);
           alert('Pitch deck sent successfully!');
           break;
         }
           
         case 'video': {
-          const videoBlob = await generateVideo(projectId, token);
+          const videoBlob = await generateVideo(projectId);
           downloadFile(videoBlob, 'pitch-video.mp4');
           break;
         }
@@ -48,31 +48,98 @@ const ExportOptions = ({ projectId, token }) => {
     URL.revokeObjectURL(url);
   };
 
+  const containerStyle = {
+    marginTop: '2rem',
+    padding: '1.5rem',
+    backgroundColor: '#f8fafc',
+    borderRadius: '8px',
+    border: '1px solid #e2e8f0'
+  };
+
+  const buttonStyle = {
+    width: '100%',
+    marginBottom: '0.5rem',
+    padding: '12px',
+    borderRadius: '6px',
+    border: 'none',
+    fontSize: '14px',
+    fontWeight: '600',
+    cursor: 'pointer',
+    transition: 'all 0.2s'
+  };
+
+  const pdfButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: '#059669',
+    color: 'white'
+  };
+
+  const emailButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: '#7c3aed',
+    color: 'white',
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+    width: 'auto',
+    paddingLeft: '16px',
+    paddingRight: '16px',
+    marginBottom: 0
+  };
+
+  const videoButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: '#dc2626',
+    color: 'white',
+    marginTop: '1rem'
+  };
+
+  const inputStyle = {
+    flex: 1,
+    padding: '12px',
+    border: '1px solid #d1d5db',
+    borderRight: 'none',
+    borderTopLeftRadius: '6px',
+    borderBottomLeftRadius: '6px',
+    fontSize: '14px',
+    outline: 'none'
+  };
+
   return (
-    <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-      <h3 className="font-bold mb-3">Export Options</h3>
+    <div style={containerStyle}>
+      <h3 style={{ fontWeight: 'bold', marginBottom: '1rem', margin: '0 0 1rem 0' }}>Export Options</h3>
       
       <button
         onClick={() => handleExport('pdf')}
         disabled={loading === 'pdf'}
-        className="w-full mb-2 bg-green-600 text-white py-2 rounded hover:bg-green-700 disabled:opacity-50"
+        style={{
+          ...pdfButtonStyle,
+          opacity: loading === 'pdf' ? 0.5 : 1,
+          backgroundColor: loading === 'pdf' ? '#059669' : '#059669'
+        }}
+        onMouseOver={(e) => !loading && (e.target.style.backgroundColor = '#047857')}
+        onMouseOut={(e) => !loading && (e.target.style.backgroundColor = '#059669')}
       >
         {loading === 'pdf' ? 'Generating...' : 'Export PDF'}
       </button>
       
-      <div className="flex mt-4">
+      <div style={{ display: 'flex', marginTop: '1rem' }}>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Investor email"
-          className="flex-1 p-2 border rounded-l"
+          style={inputStyle}
           required
         />
         <button
           onClick={() => handleExport('email')}
           disabled={loading === 'email' || !email}
-          className="bg-purple-600 text-white px-4 py-2 rounded-r hover:bg-purple-700 disabled:opacity-50"
+          style={{
+            ...emailButtonStyle,
+            opacity: (loading === 'email' || !email) ? 0.5 : 1
+          }}
+          onMouseOver={(e) => !loading && email && (e.target.style.backgroundColor = '#6d28d9')}
+          onMouseOut={(e) => !loading && email && (e.target.style.backgroundColor = '#7c3aed')}
         >
           {loading === 'email' ? 'Sending...' : 'Email'}
         </button>
@@ -81,7 +148,12 @@ const ExportOptions = ({ projectId, token }) => {
       <button
         onClick={() => handleExport('video')}
         disabled={loading === 'video'}
-        className="w-full mt-4 bg-red-600 text-white py-2 rounded hover:bg-red-700 disabled:opacity-50"
+        style={{
+          ...videoButtonStyle,
+          opacity: loading === 'video' ? 0.5 : 1
+        }}
+        onMouseOver={(e) => !loading && (e.target.style.backgroundColor = '#b91c1c')}
+        onMouseOut={(e) => !loading && (e.target.style.backgroundColor = '#dc2626')}
       >
         {loading === 'video' ? 'Generating...' : 'Create Video Pitch'}
       </button>
