@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
+import { useAuth } from './hooks/useAuth';
 import Dashboard from './components/Dashboard';
 import IdeaForm from './components/IdeaForm';
 import PitchEditor from './components/PitchEditor';

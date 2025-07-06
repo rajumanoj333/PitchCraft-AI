@@ -11,20 +11,23 @@ const ExportOptions = ({ projectId, token }) => {
     
     try {
       switch(type) {
-        case 'pdf':
+        case 'pdf': {
           const pdfBlob = await exportPDF(projectId, token);
           downloadFile(pdfBlob, 'pitch-deck.pdf');
           break;
+        }
           
-        case 'email':
+        case 'email': {
           await sendEmail(projectId, email, token);
           alert('Pitch deck sent successfully!');
           break;
+        }
           
-        case 'video':
+        case 'video': {
           const videoBlob = await generateVideo(projectId, token);
           downloadFile(videoBlob, 'pitch-video.mp4');
           break;
+        }
       }
     } catch (error) {
       console.error('Export error:', error);
