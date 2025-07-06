@@ -1,26 +1,30 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
-const { createClient } = require('@supabase/supabase-js');
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+const { supabase } = require('./services/supabaseService');
 const fetch = require('node-fetch');
 
+// Import routes
+const apiRoutes = require('./routes/apiRoutes');
+const authRoutes = require('./routes/authRoutes');
+
+// Middleware
+app.use(cors());
 app.use(express.json());
 
-// Improved error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
+// Routes
+app.use('/auth', authRoutes);
+app.use('/api', apiRoutes);
 
-// Auth Middleware
+// Auth Middleware for backward compatibility (if needed)
 const authenticate = async (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) return res.status(401).json({ error: 'Authorization token required' });
 
-    const { user, error } = await supabase.auth.api.getUser(token);
+    const { data: { user }, error } = await supabase.auth.getUser(token);
     if (error) throw error;
     
     req.user = user;
@@ -31,7 +35,7 @@ const authenticate = async (req, res, next) => {
   }
 };
 
-// Research Endpoint
+// Legacy endpoint for backward compatibility
 app.post('/api/generate-pitch', authenticate, async (req, res) => {
   try {
     console.log('Received pitch request for:', req.body.idea);
@@ -101,6 +105,12 @@ app.post('/api/generate-pitch', authenticate, async (req, res) => {
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.send('Backend is healthy');
+});
+
+// Error handling middleware (placed after routes)
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Something broke!' });
 });
 
 // Start server

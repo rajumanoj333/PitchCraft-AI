@@ -4,24 +4,24 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY
 
 // User registration
 const registerUser = async (email, password) => {
-  const { user, error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password
   });
   
   if (error) throw new Error(error.message);
-  return user;
+  return data.user;
 };
 
 // User login
 const loginUser = async (email, password) => {
-  const { user, error } = await supabase.auth.signIn({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password
   });
   
   if (error) throw new Error(error.message);
-  return user;
+  return data.user;
 };
 
 // Save pitch data
@@ -40,4 +40,4 @@ const savePitchData = async (userId, pitchData) => {
   return data;
 };
 
-module.exports = { registerUser, loginUser, savePitchData };
+module.exports = { supabase, registerUser, loginUser, savePitchData };
