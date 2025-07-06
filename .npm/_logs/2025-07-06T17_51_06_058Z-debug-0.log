@@ -1,0 +1,292 @@
+0 verbose cli /usr/local/nvm/versions/node/v22.16.0/bin/node /usr/local/nvm/versions/node/v22.16.0/bin/npm
+1 info using npm@11.4.1
+2 info using node@v22.16.0
+3 silly config load:file:/usr/local/nvm/versions/node/v22.16.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/manojkasula_mj/pitchcraft-ai/.npmrc
+5 silly config load:file:/home/manojkasula_mj/.npmrc
+6 silly config load:file:/usr/local/nvm/versions/node/v22.16.0/etc/npmrc
+7 verbose title npm install express dotenv @supabase/supabase-js node-fetch pdfkit
+8 verbose argv "install" "express" "dotenv" "@supabase/supabase-js" "node-fetch" "pdfkit"
+9 verbose logfile logs-max:10 dir:/home/manojkasula_mj/.npm/_logs/2025-07-06T17_51_06_058Z-
+10 verbose logfile /home/manojkasula_mj/.npm/_logs/2025-07-06T17_51_06_058Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly fetch manifest @supabase/supabase-js@^2.50.3
+16 silly packumentCache full:https://registry.npmjs.org/@supabase%2fsupabase-js cache-miss
+17 http fetch GET 200 https://registry.npmjs.org/@supabase%2fsupabase-js 180ms (cache revalidated)
+18 silly packumentCache full:https://registry.npmjs.org/@supabase%2fsupabase-js set size:1505786 disposed:false
+19 silly fetch manifest dotenv@^17.0.1
+20 silly packumentCache full:https://registry.npmjs.org/dotenv cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/dotenv 57ms (cache revalidated)
+22 silly packumentCache full:https://registry.npmjs.org/dotenv set size:247786 disposed:false
+23 silly fetch manifest express@^5.1.0
+24 silly packumentCache full:https://registry.npmjs.org/express cache-miss
+25 http fetch GET 200 https://registry.npmjs.org/express 36ms (cache revalidated)
+26 silly packumentCache full:https://registry.npmjs.org/express set size:787101 disposed:false
+27 silly fetch manifest node-fetch@^3.3.2
+28 silly packumentCache full:https://registry.npmjs.org/node-fetch cache-miss
+29 http fetch GET 200 https://registry.npmjs.org/node-fetch 32ms (cache revalidated)
+30 silly packumentCache full:https://registry.npmjs.org/node-fetch set size:896010 disposed:false
+31 silly fetch manifest pdfkit@*
+32 silly packumentCache full:https://registry.npmjs.org/pdfkit cache-miss
+33 http fetch GET 200 https://registry.npmjs.org/pdfkit 42ms (cache miss)
+34 silly packumentCache full:https://registry.npmjs.org/pdfkit set size:undefined disposed:false
+35 silly placeDep ROOT @supabase/supabase-js@2.50.3 REPLACE for: pitchcraft-ai@1.0.0 want: ^2.50.3
+36 silly placeDep ROOT dotenv@17.0.1 REPLACE for: pitchcraft-ai@1.0.0 want: ^17.0.1
+37 silly placeDep ROOT express@5.1.0 REPLACE for: pitchcraft-ai@1.0.0 want: ^5.1.0
+38 silly placeDep ROOT node-fetch@3.3.2 REPLACE for: pitchcraft-ai@1.0.0 want: ^3.3.2
+39 silly placeDep ROOT pdfkit@0.17.1 OK for: pitchcraft-ai@1.0.0 want: *
+40 silly fetch manifest crypto-js@^4.2.0
+41 silly packumentCache full:https://registry.npmjs.org/crypto-js cache-miss
+42 silly fetch manifest fontkit@^2.0.4
+43 silly packumentCache full:https://registry.npmjs.org/fontkit cache-miss
+44 http fetch GET 200 https://registry.npmjs.org/crypto-js 37ms (cache revalidated)
+45 silly packumentCache full:https://registry.npmjs.org/crypto-js set size:45588 disposed:false
+46 silly fetch manifest jpeg-exif@^1.1.4
+47 silly packumentCache full:https://registry.npmjs.org/jpeg-exif cache-miss
+48 http fetch GET 200 https://registry.npmjs.org/fontkit 62ms (cache revalidated)
+49 silly packumentCache full:https://registry.npmjs.org/fontkit set size:107678 disposed:false
+50 silly fetch manifest linebreak@^1.1.0
+51 silly packumentCache full:https://registry.npmjs.org/linebreak cache-miss
+52 http fetch GET 200 https://registry.npmjs.org/jpeg-exif 34ms (cache miss)
+53 silly packumentCache full:https://registry.npmjs.org/jpeg-exif set size:undefined disposed:false
+54 silly fetch manifest png-js@^1.0.0
+55 silly packumentCache full:https://registry.npmjs.org/png-js cache-miss
+56 http fetch GET 200 https://registry.npmjs.org/linebreak 43ms (cache revalidated)
+57 silly packumentCache full:https://registry.npmjs.org/linebreak set size:21021 disposed:false
+58 http fetch GET 200 https://registry.npmjs.org/png-js 38ms (cache miss)
+59 silly packumentCache full:https://registry.npmjs.org/png-js set size:undefined disposed:false
+60 silly placeDep ROOT crypto-js@4.2.0 OK for: pdfkit@0.17.1 want: ^4.2.0
+61 silly placeDep ROOT fontkit@2.0.4 OK for: pdfkit@0.17.1 want: ^2.0.4
+62 silly placeDep ROOT jpeg-exif@1.1.4 OK for: pdfkit@0.17.1 want: ^1.1.4
+63 silly placeDep ROOT linebreak@1.1.0 OK for: pdfkit@0.17.1 want: ^1.1.0
+64 silly placeDep ROOT png-js@1.0.0 OK for: pdfkit@0.17.1 want: ^1.0.0
+65 silly fetch manifest @swc/helpers@^0.5.12
+66 silly packumentCache full:https://registry.npmjs.org/@swc%2fhelpers cache-miss
+67 silly fetch manifest brotli@^1.3.2
+68 silly packumentCache full:https://registry.npmjs.org/brotli cache-miss
+69 http fetch GET 200 https://registry.npmjs.org/brotli 36ms (cache revalidated)
+70 silly packumentCache full:https://registry.npmjs.org/brotli set size:17062 disposed:false
+71 silly fetch manifest clone@^2.1.2
+72 silly packumentCache full:https://registry.npmjs.org/clone cache-miss
+73 http fetch GET 200 https://registry.npmjs.org/clone 38ms (cache revalidated)
+74 silly packumentCache full:https://registry.npmjs.org/clone set size:82973 disposed:false
+75 silly fetch manifest dfa@^1.2.0
+76 silly packumentCache full:https://registry.npmjs.org/dfa cache-miss
+77 http fetch GET 200 https://registry.npmjs.org/@swc%2fhelpers 82ms (cache revalidated)
+78 silly packumentCache full:https://registry.npmjs.org/@swc%2fhelpers set size:631925 disposed:false
+79 silly fetch manifest fast-deep-equal@^3.1.3
+80 silly packumentCache full:https://registry.npmjs.org/fast-deep-equal cache-miss
+81 http fetch GET 200 https://registry.npmjs.org/dfa 43ms (cache revalidated)
+82 silly packumentCache full:https://registry.npmjs.org/dfa set size:11327 disposed:false
+83 silly fetch manifest restructure@^3.0.0
+84 silly packumentCache full:https://registry.npmjs.org/restructure cache-miss
+85 http fetch GET 200 https://registry.npmjs.org/fast-deep-equal 37ms (cache revalidated)
+86 silly packumentCache full:https://registry.npmjs.org/fast-deep-equal set size:48634 disposed:false
+87 silly fetch manifest tiny-inflate@^1.0.3
+88 silly packumentCache full:https://registry.npmjs.org/tiny-inflate cache-miss
+89 http fetch GET 200 https://registry.npmjs.org/restructure 27ms (cache revalidated)
+90 silly packumentCache full:https://registry.npmjs.org/restructure set size:57065 disposed:false
+91 silly fetch manifest unicode-properties@^1.4.0
+92 silly packumentCache full:https://registry.npmjs.org/unicode-properties cache-miss
+93 http fetch GET 200 https://registry.npmjs.org/tiny-inflate 31ms (cache revalidated)
+94 silly packumentCache full:https://registry.npmjs.org/tiny-inflate set size:8031 disposed:false
+95 silly fetch manifest unicode-trie@^2.0.0
+96 silly packumentCache full:https://registry.npmjs.org/unicode-trie cache-miss
+97 http fetch GET 200 https://registry.npmjs.org/unicode-properties 27ms (cache revalidated)
+98 silly packumentCache full:https://registry.npmjs.org/unicode-properties set size:26767 disposed:false
+99 silly fetch manifest base64-js@0.0.8
+100 silly packumentCache full:https://registry.npmjs.org/base64-js cache-miss
+101 http fetch GET 200 https://registry.npmjs.org/unicode-trie 27ms (cache revalidated)
+102 silly packumentCache full:https://registry.npmjs.org/unicode-trie set size:16662 disposed:false
+103 http fetch GET 200 https://registry.npmjs.org/base64-js 29ms (cache revalidated)
+104 silly packumentCache full:https://registry.npmjs.org/base64-js set size:41270 disposed:false
+105 silly placeDep ROOT @swc/helpers@0.5.17 OK for: fontkit@2.0.4 want: ^0.5.12
+106 silly placeDep ROOT brotli@1.3.3 OK for: fontkit@2.0.4 want: ^1.3.2
+107 silly placeDep ROOT clone@2.1.2 OK for: fontkit@2.0.4 want: ^2.1.2
+108 silly placeDep ROOT dfa@1.2.0 OK for: fontkit@2.0.4 want: ^1.2.0
+109 silly placeDep ROOT fast-deep-equal@3.1.3 OK for: fontkit@2.0.4 want: ^3.1.3
+110 silly placeDep ROOT restructure@3.0.2 OK for: fontkit@2.0.4 want: ^3.0.0
+111 silly placeDep ROOT tiny-inflate@1.0.3 OK for: fontkit@2.0.4 want: ^1.0.3
+112 silly placeDep ROOT unicode-properties@1.4.1 OK for: fontkit@2.0.4 want: ^1.4.0
+113 silly placeDep ROOT unicode-trie@2.0.0 OK for: fontkit@2.0.4 want: ^2.0.0
+114 silly fetch manifest tslib@^2.8.0
+115 silly packumentCache full:https://registry.npmjs.org/tslib cache-miss
+116 silly fetch manifest base64-js@^1.1.2
+117 silly packumentCache full:https://registry.npmjs.org/base64-js cache-hit
+118 silly fetch manifest base64-js@^1.3.0
+119 silly packumentCache full:https://registry.npmjs.org/base64-js cache-hit
+120 silly fetch manifest pako@^0.2.5
+121 silly packumentCache full:https://registry.npmjs.org/pako cache-miss
+122 http fetch GET 200 https://registry.npmjs.org/tslib 32ms (cache revalidated)
+123 silly packumentCache full:https://registry.npmjs.org/tslib set size:108820 disposed:false
+124 http fetch GET 200 https://registry.npmjs.org/pako 40ms (cache revalidated)
+125 silly packumentCache full:https://registry.npmjs.org/pako set size:74234 disposed:false
+126 silly placeDep ROOT tslib@2.8.1 OK for: @swc/helpers@0.5.17 want: ^2.8.0
+127 silly placeDep ROOT base64-js@1.5.1 OK for: brotli@1.3.3 want: ^1.1.2
+128 silly placeDep node_modules/linebreak base64-js@0.0.8 OK for: linebreak@1.1.0 want: 0.0.8
+129 silly placeDep ROOT pako@0.2.9 OK for: unicode-trie@2.0.0 want: ^0.2.5
+130 silly reify moves {}
+131 silly audit bulk request {
+131 silly audit   '@supabase/auth-js': [ '2.70.0' ],
+131 silly audit   '@supabase/functions-js': [ '2.4.5' ],
+131 silly audit   '@supabase/node-fetch': [ '2.6.15' ],
+131 silly audit   '@supabase/postgrest-js': [ '1.19.4' ],
+131 silly audit   '@supabase/realtime-js': [ '2.11.15' ],
+131 silly audit   '@supabase/storage-js': [ '2.7.1' ],
+131 silly audit   '@types/node': [ '24.0.10' ],
+131 silly audit   '@types/phoenix': [ '1.6.6' ],
+131 silly audit   '@types/ws': [ '8.18.1' ],
+131 silly audit   accepts: [ '2.0.0' ],
+131 silly audit   'body-parser': [ '2.2.0' ],
+131 silly audit   bytes: [ '3.1.2' ],
+131 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+131 silly audit   'call-bound': [ '1.0.4' ],
+131 silly audit   'content-disposition': [ '1.0.0' ],
+131 silly audit   'content-type': [ '1.0.5' ],
+131 silly audit   cookie: [ '0.7.2' ],
+131 silly audit   'cookie-signature': [ '1.2.2' ],
+131 silly audit   'data-uri-to-buffer': [ '4.0.1' ],
+131 silly audit   debug: [ '4.4.1' ],
+131 silly audit   depd: [ '2.0.0' ],
+131 silly audit   'dunder-proto': [ '1.0.1' ],
+131 silly audit   'ee-first': [ '1.1.1' ],
+131 silly audit   encodeurl: [ '2.0.0' ],
+131 silly audit   'es-define-property': [ '1.0.1' ],
+131 silly audit   'es-errors': [ '1.3.0' ],
+131 silly audit   'es-object-atoms': [ '1.1.1' ],
+131 silly audit   'escape-html': [ '1.0.3' ],
+131 silly audit   etag: [ '1.8.1' ],
+131 silly audit   'fetch-blob': [ '3.2.0' ],
+131 silly audit   finalhandler: [ '2.1.0' ],
+131 silly audit   'formdata-polyfill': [ '4.0.10' ],
+131 silly audit   forwarded: [ '0.2.0' ],
+131 silly audit   fresh: [ '2.0.0' ],
+131 silly audit   'function-bind': [ '1.1.2' ],
+131 silly audit   'get-intrinsic': [ '1.3.0' ],
+131 silly audit   'get-proto': [ '1.0.1' ],
+131 silly audit   gopd: [ '1.2.0' ],
+131 silly audit   'has-symbols': [ '1.1.0' ],
+131 silly audit   hasown: [ '2.0.2' ],
+131 silly audit   'http-errors': [ '2.0.0' ],
+131 silly audit   statuses: [ '2.0.1', '2.0.2' ],
+131 silly audit   'iconv-lite': [ '0.6.3' ],
+131 silly audit   inherits: [ '2.0.4' ],
+131 silly audit   'ipaddr.js': [ '1.9.1' ],
+131 silly audit   'is-promise': [ '4.0.0' ],
+131 silly audit   isows: [ '1.0.7' ],
+131 silly audit   'math-intrinsics': [ '1.1.0' ],
+131 silly audit   'media-typer': [ '1.1.0' ],
+131 silly audit   'merge-descriptors': [ '2.0.0' ],
+131 silly audit   'mime-db': [ '1.54.0' ],
+131 silly audit   'mime-types': [ '3.0.1' ],
+131 silly audit   ms: [ '2.1.3' ],
+131 silly audit   negotiator: [ '1.0.0' ],
+131 silly audit   'node-domexception': [ '1.0.0' ],
+131 silly audit   'object-inspect': [ '1.13.4' ],
+131 silly audit   'on-finished': [ '2.4.1' ],
+131 silly audit   once: [ '1.4.0' ],
+131 silly audit   parseurl: [ '1.3.3' ],
+131 silly audit   'path-to-regexp': [ '8.2.0' ],
+131 silly audit   'proxy-addr': [ '2.0.7' ],
+131 silly audit   qs: [ '6.14.0' ],
+131 silly audit   'range-parser': [ '1.2.1' ],
+131 silly audit   'raw-body': [ '3.0.0' ],
+131 silly audit   router: [ '2.2.0' ],
+131 silly audit   'safe-buffer': [ '5.2.1' ],
+131 silly audit   'safer-buffer': [ '2.1.2' ],
+131 silly audit   send: [ '1.2.0' ],
+131 silly audit   'serve-static': [ '2.2.0' ],
+131 silly audit   setprototypeof: [ '1.2.0' ],
+131 silly audit   'side-channel': [ '1.1.0' ],
+131 silly audit   'side-channel-list': [ '1.0.0' ],
+131 silly audit   'side-channel-map': [ '1.0.1' ],
+131 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+131 silly audit   toidentifier: [ '1.0.1' ],
+131 silly audit   tr46: [ '0.0.3' ],
+131 silly audit   'type-is': [ '2.0.1' ],
+131 silly audit   'undici-types': [ '7.8.0' ],
+131 silly audit   unpipe: [ '1.0.0' ],
+131 silly audit   vary: [ '1.1.2' ],
+131 silly audit   'web-streams-polyfill': [ '3.3.3' ],
+131 silly audit   'webidl-conversions': [ '3.0.1' ],
+131 silly audit   'whatwg-url': [ '5.0.0' ],
+131 silly audit   wrappy: [ '1.0.2' ],
+131 silly audit   ws: [ '8.18.3' ],
+131 silly audit   '@supabase/supabase-js': [ '2.50.3' ],
+131 silly audit   dotenv: [ '17.0.1' ],
+131 silly audit   express: [ '5.1.0' ],
+131 silly audit   'node-fetch': [ '3.3.2' ],
+131 silly audit   pdfkit: [ '0.17.1' ],
+131 silly audit   'crypto-js': [ '4.2.0' ],
+131 silly audit   fontkit: [ '2.0.4' ],
+131 silly audit   'jpeg-exif': [ '1.1.4' ],
+131 silly audit   linebreak: [ '1.1.0' ],
+131 silly audit   'png-js': [ '1.0.0' ],
+131 silly audit   '@swc/helpers': [ '0.5.17' ],
+131 silly audit   brotli: [ '1.3.3' ],
+131 silly audit   clone: [ '2.1.2' ],
+131 silly audit   dfa: [ '1.2.0' ],
+131 silly audit   'fast-deep-equal': [ '3.1.3' ],
+131 silly audit   restructure: [ '3.0.2' ],
+131 silly audit   'tiny-inflate': [ '1.0.3' ],
+131 silly audit   'unicode-properties': [ '1.4.1' ],
+131 silly audit   'unicode-trie': [ '2.0.0' ],
+131 silly audit   tslib: [ '2.8.1' ],
+131 silly audit   'base64-js': [ '1.5.1', '0.0.8' ],
+131 silly audit   pako: [ '0.2.9' ]
+131 silly audit }
+132 http cache pako@https://registry.npmjs.org/pako/-/pako-0.2.9.tgz 0ms (cache hit)
+133 http cache base64-js@https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz 0ms (cache hit)
+134 http cache unicode-trie@https://registry.npmjs.org/unicode-trie/-/unicode-trie-2.0.0.tgz 0ms (cache hit)
+135 http cache tslib@https://registry.npmjs.org/tslib/-/tslib-2.8.1.tgz 0ms (cache hit)
+136 http cache tiny-inflate@https://registry.npmjs.org/tiny-inflate/-/tiny-inflate-1.0.3.tgz 0ms (cache hit)
+137 http cache restructure@https://registry.npmjs.org/restructure/-/restructure-3.0.2.tgz 0ms (cache hit)
+138 http cache fast-deep-equal@https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz 0ms (cache hit)
+139 http cache unicode-properties@https://registry.npmjs.org/unicode-properties/-/unicode-properties-1.4.1.tgz 0ms (cache hit)
+140 http cache dfa@https://registry.npmjs.org/dfa/-/dfa-1.2.0.tgz 0ms (cache hit)
+141 http cache clone@https://registry.npmjs.org/clone/-/clone-2.1.2.tgz 0ms (cache hit)
+142 http cache @swc/helpers@https://registry.npmjs.org/@swc/helpers/-/helpers-0.5.17.tgz 0ms (cache hit)
+143 http cache png-js@https://registry.npmjs.org/png-js/-/png-js-1.0.0.tgz 0ms (cache hit)
+144 http cache jpeg-exif@https://registry.npmjs.org/jpeg-exif/-/jpeg-exif-1.1.4.tgz 0ms (cache hit)
+145 http cache fontkit@https://registry.npmjs.org/fontkit/-/fontkit-2.0.4.tgz 0ms (cache hit)
+146 http cache crypto-js@https://registry.npmjs.org/crypto-js/-/crypto-js-4.2.0.tgz 0ms (cache hit)
+147 http cache pdfkit@https://registry.npmjs.org/pdfkit/-/pdfkit-0.17.1.tgz 0ms (cache hit)
+148 http cache base64-js@https://registry.npmjs.org/base64-js/-/base64-js-0.0.8.tgz 0ms (cache hit)
+149 http cache linebreak@https://registry.npmjs.org/linebreak/-/linebreak-1.1.0.tgz 0ms (cache hit)
+150 http cache brotli@https://registry.npmjs.org/brotli/-/brotli-1.3.3.tgz 0ms (cache hit)
+151 silly tarball no local data for png-js@https://registry.npmjs.org/png-js/-/png-js-1.0.0.tgz. Extracting by manifest.
+152 silly tarball no local data for jpeg-exif@https://registry.npmjs.org/jpeg-exif/-/jpeg-exif-1.1.4.tgz. Extracting by manifest.
+153 silly tarball no local data for pdfkit@https://registry.npmjs.org/pdfkit/-/pdfkit-0.17.1.tgz. Extracting by manifest.
+154 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 271ms
+155 silly audit report {}
+156 http fetch GET 200 https://registry.npmjs.org/jpeg-exif/-/jpeg-exif-1.1.4.tgz 377ms (cache miss)
+157 http fetch GET 200 https://registry.npmjs.org/png-js/-/png-js-1.0.0.tgz 439ms (cache miss)
+158 http fetch GET 200 https://registry.npmjs.org/pdfkit/-/pdfkit-0.17.1.tgz 497ms (cache miss)
+159 silly ADD node_modules/pako
+160 silly ADD node_modules/base64-js
+161 silly ADD node_modules/tslib
+162 silly ADD node_modules/unicode-trie
+163 silly ADD node_modules/unicode-properties
+164 silly ADD node_modules/tiny-inflate
+165 silly ADD node_modules/restructure
+166 silly ADD node_modules/fast-deep-equal
+167 silly ADD node_modules/dfa
+168 silly ADD node_modules/clone
+169 silly ADD node_modules/brotli
+170 silly ADD node_modules/@swc/helpers
+171 silly ADD node_modules/png-js
+172 silly ADD node_modules/linebreak
+173 silly ADD node_modules/linebreak/node_modules/base64-js
+174 silly ADD node_modules/jpeg-exif
+175 silly ADD node_modules/fontkit
+176 silly ADD node_modules/crypto-js
+177 silly ADD node_modules/pdfkit
+178 verbose cwd /home/manojkasula_mj/pitchcraft-ai
+179 verbose os Linux 6.6.87+
+180 verbose node v22.16.0
+181 verbose npm  v11.4.1
+182 verbose exit 0
+183 info ok

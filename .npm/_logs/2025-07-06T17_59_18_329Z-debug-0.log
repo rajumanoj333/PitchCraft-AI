@@ -1,0 +1,112 @@
+0 verbose cli /usr/local/nvm/versions/node/v22.16.0/bin/node /usr/local/nvm/versions/node/v22.16.0/bin/npm
+1 info using npm@11.4.1
+2 info using node@v22.16.0
+3 silly config load:file:/usr/local/nvm/versions/node/v22.16.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/home/manojkasula_mj/.cache/typescript/5.8/.npmrc
+5 silly config load:file:/home/manojkasula_mj/.npmrc
+6 silly config load:file:/usr/local/nvm/versions/node/v22.16.0/etc/npmrc
+7 verbose title npm install @types/assert-plus@ts5.8 @types/lodash@ts5.8 @types/restify@ts5.8
+8 verbose argv "install" "--ignore-scripts" "@types/assert-plus@ts5.8" "@types/lodash@ts5.8" "@types/restify@ts5.8" "--save-dev" "--user-agent" "typesInstaller/5.8.2"
+9 verbose logfile logs-max:10 dir:/home/manojkasula_mj/.npm/_logs/2025-07-06T17_59_18_329Z-
+10 verbose logfile /home/manojkasula_mj/.npm/_logs/2025-07-06T17_59_18_329Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+14 silly packumentCache corgi:https://registry.npmjs.org/@types%2fassert-plus cache-miss
+15 silly packumentCache corgi:https://registry.npmjs.org/@types%2flodash cache-miss
+16 silly packumentCache corgi:https://registry.npmjs.org/@types%2frestify cache-miss
+17 http fetch GET 200 https://registry.npmjs.org/@types%2frestify 169ms (cache miss)
+18 silly packumentCache corgi:https://registry.npmjs.org/@types%2frestify set size:undefined disposed:false
+19 http fetch GET 200 https://registry.npmjs.org/@types%2flodash 174ms (cache miss)
+20 silly packumentCache corgi:https://registry.npmjs.org/@types%2flodash set size:undefined disposed:false
+21 http fetch GET 200 https://registry.npmjs.org/@types%2fassert-plus 1364ms (cache miss)
+22 silly packumentCache corgi:https://registry.npmjs.org/@types%2fassert-plus set size:undefined disposed:false
+23 silly idealTree buildDeps
+24 silly fetch manifest @types/restify@8.5.12
+25 silly packumentCache full:https://registry.npmjs.org/@types%2frestify cache-miss
+26 http fetch GET 200 https://registry.npmjs.org/@types%2frestify 1353ms (cache miss)
+27 silly packumentCache full:https://registry.npmjs.org/@types%2frestify set size:undefined disposed:false
+28 silly fetch manifest @types/lodash@4.17.20
+29 silly packumentCache full:https://registry.npmjs.org/@types%2flodash cache-miss
+30 http fetch GET 200 https://registry.npmjs.org/@types%2flodash 113ms (cache miss)
+31 silly packumentCache full:https://registry.npmjs.org/@types%2flodash set size:undefined disposed:false
+32 silly fetch manifest @types/assert-plus@1.0.8
+33 silly packumentCache full:https://registry.npmjs.org/@types%2fassert-plus cache-miss
+34 http fetch GET 200 https://registry.npmjs.org/@types%2fassert-plus 1330ms (cache miss)
+35 silly packumentCache full:https://registry.npmjs.org/@types%2fassert-plus set size:undefined disposed:false
+36 silly placeDep ROOT @types/assert-plus@1.0.8 OK for:  want: 1.0.8
+37 silly placeDep ROOT @types/lodash@4.17.20 OK for:  want: 4.17.20
+38 silly placeDep ROOT @types/restify@8.5.12 OK for:  want: 8.5.12
+39 silly fetch manifest @types/spdy@*
+40 silly packumentCache full:https://registry.npmjs.org/@types%2fspdy cache-miss
+41 silly fetch manifest @types/bunyan@*
+42 silly packumentCache full:https://registry.npmjs.org/@types%2fbunyan cache-miss
+43 http fetch GET 200 https://registry.npmjs.org/@types%2fbunyan 1272ms (cache miss)
+44 silly packumentCache full:https://registry.npmjs.org/@types%2fbunyan set size:undefined disposed:false
+45 silly fetch manifest @types/formidable@^1
+46 silly packumentCache full:https://registry.npmjs.org/@types%2fformidable cache-miss
+47 http fetch GET 200 https://registry.npmjs.org/@types%2fspdy 1331ms (cache miss)
+48 silly packumentCache full:https://registry.npmjs.org/@types%2fspdy set size:undefined disposed:false
+49 http fetch GET 200 https://registry.npmjs.org/@types%2fformidable 57ms (cache miss)
+50 silly packumentCache full:https://registry.npmjs.org/@types%2fformidable set size:undefined disposed:false
+51 silly placeDep ROOT @types/bunyan@1.8.11 OK for: @types/restify@8.5.12 want: *
+52 silly placeDep ROOT @types/formidable@1.2.8 OK for: @types/restify@8.5.12 want: ^1
+53 silly placeDep ROOT @types/spdy@3.4.9 OK for: @types/restify@8.5.12 want: *
+54 silly reify moves {}
+55 silly audit bulk request {
+55 silly audit   '@types/body-parser': [ '1.19.6' ],
+55 silly audit   '@types/connect': [ '3.4.38' ],
+55 silly audit   '@types/express': [ '5.0.3' ],
+55 silly audit   '@types/express-serve-static-core': [ '5.0.6' ],
+55 silly audit   '@types/fluent-ffmpeg': [ '2.1.27' ],
+55 silly audit   '@types/http-errors': [ '2.0.5' ],
+55 silly audit   '@types/mime': [ '1.3.5' ],
+55 silly audit   '@types/node': [ '24.0.10' ],
+55 silly audit   '@types/pdfkit': [ '0.14.0' ],
+55 silly audit   '@types/qs': [ '6.14.0' ],
+55 silly audit   '@types/range-parser': [ '1.2.7' ],
+55 silly audit   '@types/react': [ '19.1.8' ],
+55 silly audit   '@types/send': [ '0.17.5' ],
+55 silly audit   '@types/serve-static': [ '1.15.8' ],
+55 silly audit   csstype: [ '3.1.3' ],
+55 silly audit   'types-registry': [ '0.1.728' ],
+55 silly audit   'undici-types': [ '7.8.0' ],
+55 silly audit   '@types/assert-plus': [ '1.0.8' ],
+55 silly audit   '@types/lodash': [ '4.17.20' ],
+55 silly audit   '@types/restify': [ '8.5.12' ],
+55 silly audit   '@types/bunyan': [ '1.8.11' ],
+55 silly audit   '@types/formidable': [ '1.2.8' ],
+55 silly audit   '@types/spdy': [ '3.4.9' ]
+55 silly audit }
+56 http cache @types/spdy@https://registry.npmjs.org/@types/spdy/-/spdy-3.4.9.tgz 0ms (cache hit)
+57 http cache @types/formidable@https://registry.npmjs.org/@types/formidable/-/formidable-1.2.8.tgz 0ms (cache hit)
+58 http cache @types/bunyan@https://registry.npmjs.org/@types/bunyan/-/bunyan-1.8.11.tgz 0ms (cache hit)
+59 http cache @types/lodash@https://registry.npmjs.org/@types/lodash/-/lodash-4.17.20.tgz 0ms (cache hit)
+60 http cache @types/assert-plus@https://registry.npmjs.org/@types/assert-plus/-/assert-plus-1.0.8.tgz 0ms (cache hit)
+61 http cache @types/restify@https://registry.npmjs.org/@types/restify/-/restify-8.5.12.tgz 0ms (cache hit)
+62 silly tarball no local data for @types/spdy@https://registry.npmjs.org/@types/spdy/-/spdy-3.4.9.tgz. Extracting by manifest.
+63 silly tarball no local data for @types/formidable@https://registry.npmjs.org/@types/formidable/-/formidable-1.2.8.tgz. Extracting by manifest.
+64 silly tarball no local data for @types/bunyan@https://registry.npmjs.org/@types/bunyan/-/bunyan-1.8.11.tgz. Extracting by manifest.
+65 silly tarball no local data for @types/lodash@https://registry.npmjs.org/@types/lodash/-/lodash-4.17.20.tgz. Extracting by manifest.
+66 silly tarball no local data for @types/assert-plus@https://registry.npmjs.org/@types/assert-plus/-/assert-plus-1.0.8.tgz. Extracting by manifest.
+67 silly tarball no local data for @types/restify@https://registry.npmjs.org/@types/restify/-/restify-8.5.12.tgz. Extracting by manifest.
+68 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 259ms
+69 silly audit report {}
+70 http fetch GET 200 https://registry.npmjs.org/@types/lodash/-/lodash-4.17.20.tgz 282ms (cache miss)
+71 http fetch GET 200 https://registry.npmjs.org/@types/formidable/-/formidable-1.2.8.tgz 654ms (cache miss)
+72 http fetch GET 200 https://registry.npmjs.org/@types/bunyan/-/bunyan-1.8.11.tgz 685ms (cache miss)
+73 http fetch GET 200 https://registry.npmjs.org/@types/spdy/-/spdy-3.4.9.tgz 692ms (cache miss)
+74 http fetch GET 200 https://registry.npmjs.org/@types/assert-plus/-/assert-plus-1.0.8.tgz 726ms (cache miss)
+75 http fetch GET 200 https://registry.npmjs.org/@types/restify/-/restify-8.5.12.tgz 768ms (cache miss)
+76 silly ADD node_modules/@types/spdy
+77 silly ADD node_modules/@types/formidable
+78 silly ADD node_modules/@types/bunyan
+79 silly ADD node_modules/@types/restify
+80 silly ADD node_modules/@types/lodash
+81 silly ADD node_modules/@types/assert-plus
+82 verbose cwd /home/manojkasula_mj/.cache/typescript/5.8
+83 verbose os Linux 6.6.87+
+84 verbose node v22.16.0
+85 verbose npm  v11.4.1
+86 verbose exit 0
+87 info ok
