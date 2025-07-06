@@ -10,26 +10,26 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const getSession = async () => {
-      const session = supabase.auth.session();
+      const { data: { session } } = await supabase.auth.getSession();
       setUser(session?.user || null);
       setLoading(false);
     };
 
     getSession();
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
         setUser(session?.user || null);
       }
     );
 
-    return () => listener?.unsubscribe();
+    return () => subscription?.unsubscribe();
   }, []);
 
   const value = {
     user,
     signUp: (email, password) => supabase.auth.signUp({ email, password }),
-    signIn: (email, password) => supabase.auth.signIn({ email, password }),
+    signIn: (email, password) => supabase.auth.signInWithPassword({ email, password }),
     signOut: () => supabase.auth.signOut()
   };
 

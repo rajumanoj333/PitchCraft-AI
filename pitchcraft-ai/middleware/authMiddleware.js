@@ -1,5 +1,5 @@
 // middleware/authMiddleware.js
-const supabase = require('../services/supabaseService');
+const { supabase } = require('../services/supabaseService');
 
 module.exports = async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
@@ -9,12 +9,13 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    const { user, error } = await supabase.auth.api.getUser(token);
+    const { data: { user }, error } = await supabase.auth.getUser(token);
     if (error) throw error;
     
     req.user = user;
     next();
   } catch (error) {
+    console.error('Auth middleware error:', error);
     res.status(401).json({ error: 'Invalid token' });
   }
 };
