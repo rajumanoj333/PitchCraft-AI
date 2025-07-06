@@ -14,6 +14,20 @@ const authRoutes = require('./routes/authRoutes');
 app.use(cors());
 app.use(express.json());
 
+// Root route - API information
+app.get('/', (req, res) => {
+  res.json({
+    name: 'PitchCraft AI API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      auth: '/auth/*',
+      api: '/api/*'
+    },
+    message: 'Welcome to PitchCraft AI Backend!'
+  });
+});
+
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api', apiRoutes);
