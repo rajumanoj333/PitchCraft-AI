@@ -1,134 +1,89 @@
-require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
-const { supabase } = require('./services/supabaseService');
-const fetch = require('node-fetch');
-
-// Import routes
-const apiRoutes = require('./routes/apiRoutes');
-const authRoutes = require('./routes/authRoutes');
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// Root route - API information
+// Root route
 app.get('/', (req, res) => {
   res.json({
     name: 'PitchCraft AI API',
-    version: '1.0.0',
     status: 'running',
-    endpoints: {
-      auth: '/auth/*',
-      api: '/api/*'
-    },
-    message: 'Welcome to PitchCraft AI Backend!'
+    message: 'Simple pitch deck generator - no authentication required!'
   });
 });
 
-// Routes
-app.use('/auth', authRoutes);
-app.use('/api', apiRoutes);
-
-// Auth Middleware for backward compatibility (if needed)
-const authenticate = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) return res.status(401).json({ error: 'Authorization token required' });
-
-    const { data: { user }, error } = await supabase.auth.getUser(token);
-    if (error) throw error;
-    
-    req.user = user;
-    next();
-  } catch (error) {
-    console.error('Auth error:', error);
-    res.status(401).json({ error: 'Invalid token' });
+// Generate pitch endpoint
+app.post('/api/generate-pitch', (req, res) => {
+  const { idea } = req.body;
+  
+  if (!idea) {
+    return res.status(400).json({ error: 'Idea is required' });
   }
-};
 
-// Legacy endpoint for backward compatibility
-app.post('/api/generate-pitch', authenticate, async (req, res) => {
-  try {
-    console.log('Received pitch request for:', req.body.idea);
-    
-    // Firecrawl API call
-    const firecrawlResponse = await fetch('https://api.firecrawl.dev/v0/search', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.FIRECRAWL_API_KEY}`
+  // Generate a simple pitch deck structure
+  const pitch = {
+    id: Date.now().toString(),
+    idea: idea.trim(),
+    slides: [
+      {
+        title: 'Executive Summary',
+        content: `${idea} - A revolutionary startup opportunity that addresses key market needs with innovative solutions.`
       },
-      body: JSON.stringify({ query: req.body.idea })
-    });
-    
-    if (!firecrawlResponse.ok) {
-      throw new Error(`Firecrawl error: ${firecrawlResponse.status}`);
-    }
-    
-    const firecrawlData = await firecrawlResponse.json();
-    console.log('Firecrawl results:', firecrawlData.data?.length);
-    
-    // Tambo AI API call
-    const tamboResponse = await fetch('https://api.tambo.ai/v1/generate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.TAMBO_AI_API_KEY}`
+      {
+        title: 'Problem Statement',
+        content: `Current solutions in the ${idea} space are inadequate and fail to serve users effectively.`
       },
-      body: JSON.stringify({
-        prompt: `Generate startup pitch for: ${req.body.idea}`,
-        max_tokens: 1000
-      })
-    });
-    
-    if (!tamboResponse.ok) {
-      throw new Error(`Tambo AI error: ${tamboResponse.status}`);
-    }
-    
-    const tamboData = await tamboResponse.json();
-    const pitchContent = tamboData.choices?.[0]?.text?.trim() || 'Content generation failed';
-    console.log('Generated pitch content');
-    
-    // Save to database
-    const { data, error } = await supabase
-      .from('projects')
-      .upsert([{
-        user_id: req.user.id,
-        idea: req.body.idea,
-        content: pitchContent,
-        research: firecrawlData.data || []
-      }]);
-    
-    if (error) throw error;
-    
-    res.json({
-      projectId: data[0].id,
-      pitch: pitchContent,
-      research: firecrawlData.data || []
-    });
-    
-  } catch (error) {
-    console.error('Pitch generation error:', error);
-    res.status(500).json({ error: error.message });
-  }
+      {
+        title: 'Our Solution',
+        content: `Our ${idea} platform provides a comprehensive, user-friendly solution that eliminates existing pain points.`
+      },
+      {
+        title: 'Market Opportunity',
+        content: 'Large and growing market with significant opportunity for disruption and innovation.'
+      },
+      {
+        title: 'Business Model',
+        content: 'Scalable revenue model with multiple income streams and clear path to profitability.'
+      },
+      {
+        title: 'Competitive Advantage',
+        content: 'Unique technology, experienced team, and strong market positioning create sustainable advantages.'
+      },
+      {
+        title: 'Financial Projections',
+        content: 'Strong growth trajectory with healthy unit economics and clear path to scale.'
+      },
+      {
+        title: 'Team',
+        content: 'Experienced leadership team with proven track record in building successful companies.'
+      },
+      {
+        title: 'Funding Request',
+        content: 'Seeking strategic investment to accelerate growth and market expansion.'
+      }
+    ],
+    generatedAt: new Date().toISOString()
+  };
+
+  res.json({
+    success: true,
+    pitch: pitch
+  });
 });
 
-// Health check endpoint
+// Health check
 app.get('/health', (req, res) => {
-  res.send('Backend is healthy');
-});
-
-// Error handling middleware (placed after routes)
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something broke!' });
+  res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
 
 // Start server
 app.listen(port, () => {
-  console.log(`Backend running on http://localhost:${port}`);
-  console.log(`Health check: http://localhost:${port}/health`);
+  console.log(`🚀 PitchCraft AI Server running on http://localhost:${port}`);
+  console.log(`📍 API ready at http://localhost:${port}/api/generate-pitch`);
 });
+
+module.exports = app;
