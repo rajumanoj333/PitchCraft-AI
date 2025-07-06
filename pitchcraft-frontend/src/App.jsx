@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'; // Only one import needed
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Dashboard from './components/Dashboard';
 import IdeaForm from './components/IdeaForm';
@@ -13,17 +13,15 @@ const PrivateRoute = ({ children }) => {
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<IdeaForm />} />
-          <Route path="/dashboard" element={
-            <PrivateRoute><Dashboard /></PrivateRoute>
-          } />
-          <Route path="/editor/:projectId" element={
-            <PrivateRoute><PitchEditor /></PrivateRoute>
-          } />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path="/" element={<IdeaForm />} />
+        <Route path="/dashboard" element={
+          <PrivateRoute><Dashboard /></PrivateRoute>
+        } />
+        <Route path="/editor/:projectId" element={
+          <PrivateRoute><PitchEditor /></PrivateRoute>
+        } />
+      </Routes>
     </AuthProvider>
   );
 }
