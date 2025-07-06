@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CollaborationPanel = ({ projectId }) => {
+const CollaborationPanel = () => {
   const [collaborators] = useState(['user1@example.com', 'user2@example.com']);
   
   return (
